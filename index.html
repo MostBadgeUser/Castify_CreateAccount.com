@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Castify Create Account </title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Castify - Create Account</title>
+    <link rel="stylesheet" href="create-account.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="account-container">
+        <div class="account-box">
+            <div class="account-header">
+                <img src="https://i.ibb.co/nCqS9g0/rushfordclean-1.png" alt="Castify Logo">
+                <h1>Create Your Account</h1>
+                <p>Join us and start enjoying your favorite videos!</p>
+            </div>
+            <form id="registrationForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="create-btn">Create Account</button>
+
+                <!-- Google Login Button -->
+                <div class="google-login">
+                    <button type="button" class="google-btn">
+                        <i class="fab fa-google"></i> Sign up with Google
+                    </button>
+                </div>
+
+                <div class="extra-links">
+                    <p>Already have an account? <a href="login.html">Login here</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is already registered
+        function isUserRegistered(username) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            return users.some(user => user.username === username);
+        }
+
+        // Register user
+        function registerUser(username, password) {
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            users.push({ username, password });
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        // Handle registration form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (!isUserRegistered(username)) {
+                registerUser(username, password);
+                alert('Registration successful!');
+                // Redirect to login page after successful registration
+                window.location.href = 'login.html';
+            } else {
+                alert('Username already taken!');
+            }
+        });
+    </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
