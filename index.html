@@ -28,6 +28,10 @@
             </div>
             <form id="loginForm">
                 <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required>
                 </div>
@@ -53,25 +57,26 @@
 
     <script>
         // Check if the user is registered
-        function isUserRegistered(email, password) {
+        function isUserRegistered(username, email, password) {
             const users = JSON.parse(localStorage.getItem('users')) || [];
-            return users.some(user => user.email === email && user.password === password);
+            return users.some(user => user.username === username && user.email === email && user.password === password);
         }
 
         // Handle login form submission
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
 
+            const username = document.getElementById('username').value;
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            if (isUserRegistered(email, password)) {
+            if (isUserRegistered(username, email, password)) {
                 alert('Login successful! Redirecting...');
-                localStorage.setItem('currentUser', email); // Store current user
+                localStorage.setItem('currentUser', username); // Store current user
                 // Redirect to the welcome/menu page after successful login
                 window.location.href = 'menu.html';
             } else {
-                alert('Invalid email or password!');
+                alert('Invalid username, email, or password!');
             }
         });
     </script>
