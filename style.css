@@ -74,7 +74,18 @@ body {
     border-color: #e0e1dd; /* Change border color on focus */
 }
 
-.create-btn {
+/* Specific for Email Field */
+.input-group input[type="email"] {
+    background-color: #778da9; /* Match the background for the email input */
+    color: #e0e1dd; /* Match the text color for email input */
+    border-color: #415a77; /* Consistent border with other inputs */
+}
+
+.input-group input[type="email"]:focus {
+    border-color: #e0e1dd; /* Consistent focus color for email input */
+}
+
+.login-btn {
     width: 100%; /* Full width button */
     background-color: #415a77; /* Button background color */
     color: #e0e1dd; /* Button text color */
@@ -87,36 +98,8 @@ body {
     transition: background-color 0.3s; /* Smooth transition for background color */
 }
 
-.create-btn:hover {
+.login-btn:hover {
     background-color: #0d1b2a; /* Darker background on hover */
-}
-
-.google-login {
-    margin: 20px 0; /* Margin for Google login button */
-}
-
-.google-btn {
-    width: 100%; /* Full width button */
-    background-color: #db4437; /* Google Red */
-    color: white; /* Text color for Google button */
-    border: none; /* Remove default border */
-    padding: 12px; /* Button padding */
-    border-radius: 8px; /* Rounded corners for button */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-weight: 600; /* Bold font for button */
-    font-size: 16px; /* Button font size */
-    display: flex; /* Flex for centering content */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
-    transition: background-color 0.3s; /* Smooth transition for background color */
-}
-
-.google-btn:hover {
-    background-color: #c1351d; /* Darker Red on hover */
-}
-
-.google-btn i {
-    margin-right: 8px; /* Space between icon and text */
 }
 
 .extra-links {
