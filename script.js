@@ -29,6 +29,12 @@ function checkPasswordStrength(password) {
   return "Good";
 }
 
+// Функция для проверки формата изображения
+function isValidImageFormat(file) {
+  const validFormats = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp', 'image/avif', 'image/svg+xml'];
+  return validFormats.includes(file.type);
+}
+
 // Функция загрузки изображения в Cloudinary
 async function uploadToCloudinary(file) {
   const formData = new FormData();
@@ -74,6 +80,12 @@ document.getElementById('register-button').addEventListener('click', async () =>
 
   if (!email || !password || !nickname || !profilePicture) {
     alert('Please fill in all required fields and upload a profile picture!');
+    return;
+  }
+
+  // Проверка формата изображения
+  if (!isValidImageFormat(profilePicture)) {
+    alert('The profile picture format is not supported. Please upload a valid image in JPEG, PNG, GIF, BMP, WebP, AVIF, or SVG format.');
     return;
   }
 
