@@ -1,120 +1,136 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>CodePen - Castify Create Account </title>
-  <link rel="stylesheet" href="./style.css">
-
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Castify - Create Account</title>
-    <link rel="stylesheet" href="create-account.css">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Castify - Login & Register</title>
+  <style>
+    /* Основной стиль для страницы */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      display: flex;
+      width: 80%;
+      max-width: 900px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container {
+      width: 50%;
+      padding: 20px;
+      box-sizing: border-box;
+      border-right: 1px solid #ccc;
+    }
+
+    .form-container:last-child {
+      border-right: none;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input[type="email"], input[type="password"], input[type="text"], input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .toggle-link {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .toggle-link a {
+      color: #4CAF50;
+      text-decoration: none;
+    }
+
+    .toggle-link a:hover {
+      text-decoration: underline;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .logo-container img {
+      width: 100px;
+      height: auto;
+    }
+
+    .footer-text {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 12px;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
-    <div class="account-container">
-        <div class="account-box">
-            <div class="account-header">
-                <img src="https://i.ibb.co/nCqS9g0/rushfordclean-1.png" alt="Castify Logo">
-                <h1>Create Your Account</h1>
-                <p>Join us and start enjoying your favorite videos!</p>
-            </div>
-            <!-- Only one form should exist -->
-            <form id="registrationForm">
-                <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" required>
-                </div>
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button type="submit" class="create-btn">Create Account</button>
 
-                <!-- Google Login Button -->
-                <div class="google-login">
-                    <button type="button" class="google-btn">
-                        <i class="fab fa-google"></i> Sign up with Google
-                    </button>
-                </div>
-
-                <div class="extra-links">
-                    <p>Already have an account? <a href="login.html">Login here</a></p>
-                </div>
-            </form>
-        </div>
+  <div class="container">
+    <!-- Логотип -->
+    <div class="logo-container">
+      <img src="https://i.ibb.co/nCqS9g0/rushfordclean-1.png" alt="Castify Logo">
     </div>
 
-    <script>
-        // Initialize EmailJS
-        (function(){
-            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
-        })();
+    <!-- Форма входа -->
+    <div class="form-container" id="login-form-container">
+      <h2>Login</h2>
+      <input type="email" id="login-email" placeholder="Email" required>
+      <input type="password" id="login-password" placeholder="Password" required>
+      <button id="login-button">Login</button>
+      <p class="toggle-link">Don't have an account? <a href="#" id="show-register">Register here</a></p>
+    </div>
 
-        // Check if user is already registered
-        function isUserRegistered(username) {
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            return users.some(user => user.username === username);
-        }
+    <!-- Форма регистрации -->
+    <div class="form-container" id="register-form-container" style="display: none;">
+      <h2>Register</h2>
+      <input type="email" id="register-email" placeholder="Email" required>
+      <input type="password" id="register-password" placeholder="Password" required>
+      <input type="text" id="nickname" placeholder="Nickname" required>
+      <input type="file" id="profile-picture" accept="image/*" required>
+      <button id="register-button">Register</button>
+      <p class="toggle-link">Already have an account? <a href="#" id="show-login">Login here</a></p>
+    </div>
+  </div>
 
-        // Register user and store in localStorage
-        function registerUser(username, email, password) {
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            users.push({ username, email, password });
-            localStorage.setItem('users', JSON.stringify(users));
-            localStorage.setItem('currentUser', username); // Save the registered username
-        }
+  <div class="footer-text">
+    <p>Profile format is JPEG, PNG, GIF, BMP, WebP, AVIF, and SVG. For more, appeal to the <a href="mailto:castifycom@gmail.com">castifycom@gmail.com</a>.</p>
+  </div>
 
-        // Send welcome email using EmailJS
-        function sendWelcomeEmail(email, username) {
-            emailjs.send("service_eaz5mxs", "template_your_template_id", {
-                to_email: email,
-                username: username
-            })
-            .then(function(response) {
-                console.log('Email sent successfully:', response);
-            }, function(error) {
-                console.error('Failed to send email:', error);
-            });
-        }
-
-        // Handle registration form submission
-        document.addEventListener('DOMContentLoaded', function() {
-            const registrationForm = document.getElementById('registrationForm');
-            registrationForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                const username = document.getElementById('username').value;
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-
-                if (!isUserRegistered(username)) {
-                    registerUser(username, email, password);
-                    sendWelcomeEmail(email, username); // Send welcome email
-                    alert('Registration successful! Redirecting...');
-                    window.location.href = 'https://mostbadgeuser.github.io/Castify_Welcome.com/';
-                } else {
-                    alert('Username already taken!');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
-<!-- partial -->
-  <script  src="./script.js"></script>
-
+  <!-- Подключаем скрипт с логикой регистрации и входа -->
+  <script type="module" src="main.js"></script>
 </body>
 </html>
