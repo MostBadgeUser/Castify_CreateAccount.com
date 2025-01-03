@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Registration</title>
+  <title>Castify </title>
   <link rel="stylesheet" href="./style.css">
 
 </head>
@@ -11,141 +11,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Castify - Login & Register</title>
-  <style>
-    /* Основной стиль для страницы */
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f4f4f4;
-    }
-
-    .container {
-      display: flex;
-      width: 80%;
-      max-width: 900px;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .form-container {
-      width: 50%;
-      padding: 20px;
-      box-sizing: border-box;
-      border-right: 1px solid #ccc;
-    }
-
-    .form-container:last-child {
-      border-right: none;
-    }
-
-    h2 {
-      text-align: center;
-    }
-
-    input[type="email"], input[type="password"], input[type="text"], input[type="file"] {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-
-    .toggle-link {
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    .toggle-link a {
-      color: #4CAF50;
-      text-decoration: none;
-    }
-
-    .toggle-link a:hover {
-      text-decoration: underline;
-    }
-
-    .logo-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      padding: 20px;
-    }
-
-    .logo-container img {
-      width: 100px;
-      height: auto;
-    }
-
-    .footer-text {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 12px;
-      color: #555;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Castify</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Подключение Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
 </head>
 <body>
+    <header>
+        <div class="navbar">
+            <img src="https://i.ibb.co/nCqS9g0/rushfordclean-1.png" id="logo" alt="Logo">
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search...">
+                <button id="search-button">Search</button>
+            </div>
+            <button id="login-register-btn">Login/Register</button> <!-- Кнопка для регистрации и входа -->
+        </div>
+    </header>
 
-  <div class="container">
-    <!-- Логотип -->
-    <div class="logo-container">
-      <img src="https://i.ibb.co/nCqS9g0/rushfordclean-1.png" alt="Castify Logo">
-    </div>
+    <nav>
+        <ul class="nav-links">
+            <li id="home-tab">Home</li>
+            <li id="channels-tab">Channels</li>
+            <li id="videos-tab">Videos</li>
+            <li id="newest-tab">Newest</li>
+        </ul>
+    </nav>
 
-    <!-- Форма входа -->
-    <div class="form-container" id="login-form-container">
-      <h2>Login</h2>
-      <input type="email" id="login-email" placeholder="Email" required>
-      <input type="password" id="login-password" placeholder="Password" required>
-      <button id="login-button">Login</button>
-      <p class="toggle-link">Don't have an account? <a href="#" id="show-register">Register here</a></p>
-    </div>
+    <section id="channels-section">
+        <h2>Channels You May Like</h2>
+        <div id="channels-container">
+            <!-- Каналы будут добавлены сюда -->
+            <p>Loading channels...</p>
+        </div>
+    </section>
 
-    <!-- Форма регистрации -->
-    <div class="form-container" id="register-form-container" style="display: none;">
-      <h2>Register</h2>
-      <input type="email" id="register-email" placeholder="Email" required>
-      <input type="password" id="register-password" placeholder="Password" required>
-      <input type="text" id="nickname" placeholder="Nickname" required>
-      <input type="file" id="profile-picture" accept="image/*" required>
-      <button id="register-button">Register</button>
-      <p class="toggle-link">Already have an account? <a href="#" id="show-login">Login here</a></p>
-    </div>
-  </div>
+    <footer>
+        <p>&copy; 2025 Castify. All rights reserved.</p>
+    </footer>
 
-  <div class="footer-text">
-    <p>Profile format is JPEG, PNG, GIF, BMP, WebP, AVIF, and SVG. For more, appeal to the <a href="mailto:castifycom@gmail.com">castifycom@gmail.com</a>.</p>
-  </div>
+    <!-- Подключение JavaScript -->
+    <script src="app.js"></script>
 
-  <!-- Подключаем скрипт с логикой регистрации и входа -->
-  <script type="module" src="main.js"></script>
+    <script>
+        // Добавляем обработчик события на кнопку "Login/Register"
+        document.getElementById('login-register-btn').addEventListener('click', function() {
+            window.location.href = 'https://mostbadgeuser.github.io/Castify_CreateAccount.com'; // Переход на указанную страницу
+        });
+    </script>
 </body>
 </html>
 <!-- partial -->
-  <script type="module" src="./script.js"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script><script  src="./script.js"></script>
 
 </body>
 </html>
