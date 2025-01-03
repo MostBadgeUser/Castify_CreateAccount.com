@@ -1,237 +1,122 @@
-/* Общие стили */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
+/* Основные стили для body */
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-/* Шапка и навигация */
-header {
-  background: linear-gradient(135deg, #4CAF50, #2e7d32);
-  color: #fff;
-  padding: 15px 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#logo {
-  max-height: 50px;
-  cursor: pointer;
-}
-
-.search-container {
-  display: flex;
-}
-
-#search-bar {
-  padding: 8px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: none;
-  margin-right: 10px;
-}
-
-#search-button {
-  padding: 8px 12px;
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-#search-button:hover {
-  background-color: #45a049;
-}
-
-.user-actions {
-  display: flex;
-  align-items: center;
-}
-
-#login-register-btn {
-  background-color: #fff;
-  color: #4CAF50;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-#login-register-btn:hover {
-  background-color: #4CAF50;
-  color: white;
-}
-
-#profile-icon {
-  position: relative;
-  cursor: pointer;
-}
-
-#profile-menu {
-  position: absolute;
-  top: 50px;
-  right: 0;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  list-style: none;
-  padding: 10px 0;
-  display: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-}
-
-#profile-menu li {
-  padding: 10px 20px;
-  font-size: 14px;
-  color: #333;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-#profile-menu li:hover {
-  background-color: #f1f1f1;
-}
-
-/* Навигация */
-nav {
-  background-color: #333;
-  color: white;
-  padding: 10px 0;
-}
-
-.nav-links {
+  font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
-  list-style: none;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4;
 }
 
-.nav-links li {
-  margin: 0 20px;
-  cursor: pointer;
-  font-size: 18px;
-  padding: 10px;
+/* Контейнер с формами */
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  max-width: 1000px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Обрезаем лишнее */
+  padding: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Формы регистрации и входа */
+.form-container {
+  width: 48%; /* Оставляем пространство между формами */
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-color: #f9f9f9;
   transition: background-color 0.3s ease;
 }
 
-.nav-links li:hover {
-  background-color: #4CAF50;
-  border-radius: 5px;
+.form-container:hover {
+  background-color: #eef7e9; /* Легкий эффект на наведение */
 }
 
-/* Главный блок приветствия */
-#welcome-section {
-  background: linear-gradient(to right, #4CAF50, #81C784);
-  color: white;
+/* Титул внутри формы */
+h2 {
   text-align: center;
-  padding: 80px 20px;
-}
-
-#welcome-section h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-#welcome-section p {
-  font-size: 18px;
-  margin-bottom: 0;
-}
-
-/* Каналы */
-#channels-section {
-  padding: 40px 20px;
-  background-color: #fff;
-}
-
-#channels-section h2 {
   font-size: 24px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-#channels-container {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.channel-card {
-  width: 180px;
-  background-color: #f1f1f1;
-  padding: 15px;
-  text-align: center;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.channel-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-.channel-card img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  margin-bottom: 10px;
-  object-fit: cover;
-}
-
-.channel-card h3 {
-  font-size: 16px;
-  margin-top: 10px;
   color: #333;
+  margin-bottom: 20px;
 }
 
-/* Футер */
-footer {
-  background-color: #333;
+/* Стили для всех полей ввода */
+input[type="email"], input[type="password"], input[type="text"], input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+/* Стили для полей при фокусе */
+input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus, input[type="file"]:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Стили для кнопок */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
   color: white;
-  text-align: center;
-  padding: 10px 0;
-  font-size: 14px;
-  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-/* Медиа-запросы для адаптивности */
+/* Эффект при наведении на кнопки */
+button:hover {
+  background-color: #45a049;
+}
+
+/* Стили для ссылки переключения форм */
+.toggle-link {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.toggle-link a {
+  color: #4CAF50;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.toggle-link a:hover {
+  text-decoration: underline;
+}
+
+/* Стили для изображений и логотипов */
+#logo {
+  display: block;
+  margin: 0 auto;
+  max-width: 150px;
+  margin-bottom: 30px;
+}
+
+/* Стили для адаптивности */
 @media (max-width: 768px) {
-  #search-bar {
-    width: 200px;
-  }
-
-  .nav-links {
+  .container {
     flex-direction: column;
-    gap: 10px;
+    padding: 10px;
   }
 
-  .channel-card {
+  .form-container {
     width: 100%;
-    max-width: 300px;
+    margin-bottom: 20px;
+  }
+
+  .form-container:last-child {
+    margin-bottom: 0;
   }
 }
