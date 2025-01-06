@@ -1,0 +1,41 @@
+name: Upload Video and Metadata to Castify.com
+
+on:
+  repository_dispatch:
+    types:
+      - upload-video
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Castify.com repository
+      uses: actions/checkout@v3
+      with:
+        repository: YOUR_USERNAME/Castify.com
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Save video and metadata
+      env:
+        VIDEO_FILE: ${{ github.event.client_payload.video }}
+        METADATA: ${{ github.event.client_payload.metadata }}
+        UNIQUE_ID: ${{ github.event.client_payload.unique_id }}
+      run: |
+        # Создаём директории, если их нет
+        mkdir -p videos metadata
+
+        # Сохраняем видео
+        echo "$VIDEO_FILE" | base64 -d > videos/${UNIQUE_ID}
+
+        # Сохраняем метаданные
+        echo "$METADATA" > metadata/${UNIQUE_ID}.json
+
+    - name: Commit and push changes
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "actions@github.com"
+        git add videos metadata
+        git commit -m "Added video and metadata: ${{ github.event.client_payload.unique_id }}"
+        git push
+        
